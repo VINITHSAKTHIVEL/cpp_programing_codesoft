@@ -1,0 +1,43 @@
+#include <iostream>
+
+int main() {
+    long double num1, num2;
+    char operation;
+    int i=1;
+    
+std::cout << "\n* * * * * * * * * * Simple Calculator * * * * * * * * *\n\n ";
+std::cout << "\t\t ________________________________________" << std::endl;
+    std::cout <<"\t\t|   STEP 1 : Enter first number\t\t\t |\n\t\t|   STEP 2 : Enter an operator(+ - * /)  |\n \t\t|   STEP 3 : Enter second number\t\t |\n ";
+   std::cout << "\t\t|________________________________________|" << std::endl;
+   while(i==1)
+   {
+      
+   std::cout << "\n\tEnter The Above Details Wisely\n" << std::endl;
+    std::cin >> num1>>operation>>num2;
+    switch (operation) {
+        case '+':
+            std::cout <<"\n\n"<< num1<<" + "<< num2 << " = " << num1 + num2 << std::endl;
+            break;
+        case '-':
+             std::cout <<"\n\n"<< num1<<" - "<< num2 << " = " << num1 - num2 << std::endl;
+            break;
+        case '*':
+            std::cout <<"\n\n"<< num1<<" * "<< num2 << " = " << num1 * num2 << std::endl;
+            break;
+        case '/':
+            if (num2 != 0) {
+                std::cout <<"\n\n"<< num1<<" / "<< num2 << " = " << num1 / num2 << std::endl;
+            } else {
+                std::cout << "Error: Division by zero!" << std::endl;
+            }
+            break;
+        default:
+            std::cout << "Error: Invalid operator!" <<std::endl;
+            break;
+    }
+     std::cout<<"\n\n\tEnter 1--> To Continue\n\n\tEnter 0--> To Exit "<<std::endl;
+     std::cin>>i;
+   }
+ std::cout << "\n\n* * * * * * *calculation done successfully * * * * * * *" << std::endl;
+    return 0;
+}
