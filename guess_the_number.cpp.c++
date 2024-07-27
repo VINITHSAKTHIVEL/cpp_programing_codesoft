@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
@@ -314,4 +314,4 @@ cout<<"\nYou Choose a Level : "<<level<<"\n\nSo You Have "<<choicesLeft<<" Choic
     
     return 0;
 }
->>>>>>> origin
+
