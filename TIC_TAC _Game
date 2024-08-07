@@ -1,0 +1,159 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <cctype> 
+int se;
+ char marker_p2;
+  char marker_p3;
+
+using namespace std;
+
+char board[3][3] = { {'1', '2', '3'},
+                     {'4', '5', '6'},
+                     {'7', '8', '9'} };
+
+char current_marker;
+int current_player;
+
+void drawBoard() {
+    cout << "-------------\n";
+    for (int i = 0; i < 3; i++) {
+        cout << "| ";
+        for (int j = 0; j < 3; j++) {
+            cout << board[i][j] << " | ";
+        }
+        cout << "\n-------------\n";
+    }
+}
+
+bool placeMarker(int slot) {
+    int row = (slot - 1) / 3;
+    int col = (slot - 1) % 3;
+
+    if (board[row][col] != 'X' && board[row][col] != 'O') {
+        board[row][col] = current_marker;
+        return true;
+    } else {
+        return false;
+    }
+}
+
+int winner() {
+   
+    for (int i = 0; i < 3; i++) {
+        if (board[i][0] == board[i][1] && board[i][1] == board[i][2])
+            return current_player;
+    }
+
+   
+    for (int i = 0; i < 3; i++) {
+        if (board[0][i] == board[1][i] && board[1][i] == board[2][i])
+            return current_player;
+    }
+
+  
+    if (board[0][0] == board[1][1] && board[1][1] == board[2][2])
+        return current_player;
+    if (board[0][2] == board[1][1] && board[1][1] == board[2][0])
+        return current_player;
+
+    return 0;
+}
+
+void swap_player_and_marker() {
+    if (current_marker == 'X') current_marker = 'O';
+    else current_marker = 'X';
+
+    if (current_player == 1) current_player = 2;
+    else current_player = 1;
+}
+
+void game() {
+    cout << "Player "<<se<<", choose your marker: X or O: ";
+    char markerp1;
+    cin >> markerp1;
+    char marker_p1=toupper(markerp1);
+    if(marker_p1=='O'||marker_p1=='X')
+  { 
+      current_player = se;////////
+    current_marker = marker_p1;
+       
+  }
+else
+{
+    cout<<"\n\tInvalid Choice, Please Enter Valid Choice\n"<<endl;
+     char markerp2;
+    cin >> markerp2;
+    marker_p2=toupper(markerp2);;
+    if(marker_p2=='O'||marker_p2=='X')
+  { 
+      current_player = se;
+    current_marker = marker_p2;
+  }  
+  else
+{
+    cout<<"\n\tInvalid Choice, Please Enter Valid Choice\n"<<endl;
+     char markerp3;
+    cin >> markerp3;
+    marker_p3=toupper(markerp3);
+    if(marker_p3=='O'||marker_p3=='X')
+  { 
+      current_player = se;
+    current_marker = marker_p3;
+      
+  }
+}
+}
+
+  current_player = se;
+
+
+    drawBoard();
+
+    int player_won;
+    for (int i = 0; i < 9; i++) {
+        cout << "It's player " << current_player << "'s turn. Enter your slot: ";
+        int slot;
+        cin >> slot;
+
+        if (slot < 1 || slot > 9) {
+            cout << "Invalid slot! Try again.\n";
+            i--;
+            continue;
+        }
+
+        if (!placeMarker(slot)) {
+            cout << "Slot occupied! Try again.\n";
+            i--;
+            continue;
+        }
+
+        drawBoard();
+
+        player_won = winner();
+
+        if (player_won == 1) { cout << "\n\n\t\t\tPlayer 1 won! Congratulations!\n"; break; }
+        if (player_won == 2) { cout << "\n\n\t\t\tPlayer 2 won! Congratulations!\n"; break; }
+
+        swap_player_and_marker();
+    }
+
+    if (player_won == 0)
+        cout << "It's a tie!\n";
+}
+
+int main() {
+     cout<<"\n\n* * * * * * *WELCOME TO TIC TAC GAME* * * * * * *\n"<<endl;
+   cout<<"\n\t-----Toss Will Be Show Down Shortly-----\n\n\t--> Before The Toss\n\nNote : 2 Players Only Allowed To Play The Game\n\nYou Can Choose Who's Go With Player 1 And Player 2\n"<<endl;
+    srand(time(0));
+        se =rand() %2+1;
+        char d;
+        cout<<"\n\t Press Any Key To Enter\n";
+        cin>>d;
+        cout<<"\n\tplayer : "<<se<<" Can Be Start The Game\n\n";
+      //  cout << "Player " <<se<<", choose your marker: X or O: ";
+    game();
+    
+    return 0;
+}
+
